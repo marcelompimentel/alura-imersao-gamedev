@@ -1,36 +1,36 @@
-class Personagem {
-	constructor(imagem) {
-		this.imagem = imagem;
+class Personagem extends Animacao {
+	constructor(matriz, imagem, x, largura, altura, largura_sprite, altura_sprite) {
+		super(matriz, imagem, x, largura, altura, largura_sprite, altura_sprite);
 
-		this.personagem_largura = 220;
-		this.personagem_altura = 270;
+		this.y_inicial = height - this.altura;
+		this.y = this.y_inicial;
 
-		this.matriz = new Array();
-		for(var j = 0; j < 4; j++) {
-			for(var k = 0; k < 4; k++) {
-				this.matriz.push([this.personagem_largura * k, this.personagem_altura * j]);
-			}
-		}
-
-		this.frame_atual = 0;
+		this.altura_pulo = 30;
+		this.velocidade_pulo = 0;
+		this.gravidade = 3;
 	}
 
-
-	exibe() {
-		image(this.imagem,
-			0, height - this.personagem_altura / 2,
-			this.personagem_largura / 2, this.personagem_altura / 2,
-			this.matriz[this.frame_atual][0], this.matriz[this.frame_atual][1],
-			this.personagem_largura, this.personagem_altura);
-
-		this.anima();
+	pula() {
+		this.velocidade_pulo = -this.altura_pulo;
 	}
 
+	aplica_gravidade() {
+		this.y = this.y + this.velocidade_pulo;
+		this.velocidade_pulo = this.velocidade_pulo + this.gravidade;
 
-	anima() {
-		this.frame_atual++;
-		if(this.frame_atual >= this.matriz.length - 1) {
-			this.frame_atual = 0;
+		if(this.y > this.y_inicial) {
+			this.y = this.y_inicial;
 		}
+	}
+
+	esta_colidindo(inimigo) {
+		// noFill();
+		// rect(this.x, this.y, this.largura, this.altura);
+		// rect(inimigo.x, inimigo.y, inimigo.largura, inimigo.altura);
+		const precisao = .7;
+		const colisao = collideRectRect(
+			this.x, this.y, this.largura * precisao, this.altura * precisao,
+			inimigo.x, inimigo.y, inimigo.largura * precisao, inimigo.altura * precisao);
+		return colisao;
 	}
 }
