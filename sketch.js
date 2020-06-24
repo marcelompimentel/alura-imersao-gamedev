@@ -5,6 +5,8 @@ let imagem_inimigo_grande;
 
 let cenario;
 let gameover;
+let pontuacao;
+
 let personagem;
 let inimigo;
 let inimigo_grande;
@@ -66,6 +68,7 @@ function preload() {
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	cenario = new Cenario(imagem_cenario, 5);
+	pontuacao = new Pontuacao();
 	
 	personagem = new Personagem(matriz_personagem, imagem_personagem, 0, 30, 110, 135, 220, 270);
 	
@@ -92,6 +95,8 @@ function keyPressed() {
 function draw() {
 	cenario.exibe();
 	cenario.move();
+	pontuacao.exibe();
+	pontuacao.adicionar_ponto();
 
 	personagem.exibe();
 	personagem.aplica_gravidade();
