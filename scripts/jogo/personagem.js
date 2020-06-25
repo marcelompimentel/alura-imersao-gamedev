@@ -6,13 +6,18 @@ class Personagem extends Animacao {
 		this.y_inicial = height - this.altura - this.variacao_y;
 		this.y = this.y_inicial;
 
+		this.pulos = 0;
+		this.limite_pulos = 2;
 		this.altura_pulo = 30;
 		this.velocidade_pulo = 0;
 		this.gravidade = 3;
 	}
 
 	pula() {
-		this.velocidade_pulo = -this.altura_pulo;
+		if(this.pulos < this.limite_pulos) {
+			this.velocidade_pulo = -this.altura_pulo;
+			this.pulos++;
+		}
 	}
 
 	aplica_gravidade() {
@@ -21,6 +26,7 @@ class Personagem extends Animacao {
 
 		if(this.y > this.y_inicial) {
 			this.y = this.y_inicial;
+			this.pulos = 0;
 		}
 	}
 
