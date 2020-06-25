@@ -8,7 +8,7 @@ class Personagem extends Animacao {
 
 		this.pulos = 0;
 		this.limite_pulos = 2;
-		this.altura_pulo = 30;
+		this.altura_pulo = 40;
 		this.velocidade_pulo = 0;
 		this.gravidade = 3;
 	}
