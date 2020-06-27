@@ -11,6 +11,8 @@ class Personagem extends Animacao {
 		this.altura_pulo = 40;
 		this.velocidade_pulo = 0;
 		this.gravidade = 3;
+
+		this.invencivel = false;
 	}
 
 	pula() {
@@ -30,10 +32,22 @@ class Personagem extends Animacao {
 		}
 	}
 
+	tornar_invencivel() {
+		this.invencivel = true;
+		setTimeout(() => {
+			this.invencivel = false;
+		}, 3000);
+	}
+
 	esta_colidindo(inimigo) {
 		// noFill();
 		// rect(this.x, this.y, this.largura, this.altura);
 		// rect(inimigo.x, inimigo.y, inimigo.largura, inimigo.altura);
+
+		if(this.invencivel) {
+			return false;
+		}
+
 		const precisao = .7;
 		const colisao = collideRectRect(
 			this.x, this.y, this.largura * precisao, this.altura * precisao,

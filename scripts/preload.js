@@ -3,6 +3,7 @@ function preload() {
 	imagem_tela_inicial = loadImage('imagens/cenario/telaInicial.png');
 	imagem_cenario = loadImage('imagens/cenario/floresta.png');
 	imagem_gameover = loadImage('imagens/assets/game-over.png');
+	imagem_vida = loadImage('imagens/assets/coracao.png');
 	imagem_personagem = loadImage('imagens/personagem/correndo.png');
 	imagem_inimigo = loadImage('imagens/inimigos/gotinha.png');
 	imagem_inimigo_grande = loadImage('imagens/inimigos/troll.png');

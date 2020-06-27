@@ -2,6 +2,7 @@ let fonte_tela_inicial;
 
 let imagem_tela_inicial;
 let imagem_cenario;
+let imagem_vida;
 let imagem_personagem;
 let imagem_inimigo;
 let imagem_inimigo_grande;
@@ -11,6 +12,7 @@ let botao_gerenciador;
 let jogo;
 let cenario;
 let gameover;
+let vida;
 let pontuacao;
 let cena_atual = 'tela_inicial';
 let cenas;
