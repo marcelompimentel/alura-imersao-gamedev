@@ -1,6 +1,13 @@
 class Jogo {
 	constructor() {
-		this.inimigo_atual = 0;
+		this.indice = 0;
+
+		this.mapa = [
+			{ inimigo: 0, velocidade: 10 },
+			{ inimigo: 1, velocidade: 30 },
+			{ inimigo: 1, velocidade: 15 },
+			{ inimigo: 2, velocidade: 40 }
+		];
 	}
 
 
@@ -10,9 +17,9 @@ class Jogo {
 		pontuacao = new Pontuacao();
 
 		personagem = new Personagem(matriz_personagem, imagem_personagem, 0, 30, 110, 135, 220, 270);
-		const inimigo = new Inimigo(matriz_inimigo, imagem_inimigo, width - 52, 30, 52, 52, 104, 104, 10, 100);
-		const inimigo_grande = new Inimigo(matriz_inimigo_grande, imagem_inimigo_grande, width, 0, 200, 200, 400, 400, 10, 200);
-		const inimigo_voador = new Inimigo(matriz_inimigo_voador, imagem_inimigo_voador, width - 100, 200, 100, 75, 200, 150, 10, 200);
+		const inimigo = new Inimigo(matriz_inimigo, imagem_inimigo, width - 52, 30, 52, 52, 104, 104, 10);
+		const inimigo_grande = new Inimigo(matriz_inimigo_grande, imagem_inimigo_grande, width, 0, 200, 200, 400, 400, 10);
+		const inimigo_voador = new Inimigo(matriz_inimigo_voador, imagem_inimigo_voador, width - 100, 200, 100, 75, 200, 150, 10);
 
 		inimigos.push(inimigo);
 		inimigos.push(inimigo_grande);
@@ -38,18 +45,21 @@ class Jogo {
 		personagem.exibe();
 		personagem.aplica_gravidade();
 
-		const inimigo = inimigos[this.inimigo_atual];
+		const linha_atual = this.mapa[this.indice];
+		const inimigo = inimigos[linha_atual.inimigo];
 		const inimigo_visivel = inimigo.x < - inimigo.largura;
+
+		inimigo.velocidade = linha_atual.velocidade;
 
 		inimigo.exibe();
 		inimigo.move();
 
 		if(inimigo_visivel) {
-			this.inimigo_atual++;
-			if(this.inimigo_atual > 2) {
-				this.inimigo_atual = 0;
+			this.indice++;
+			inimigo.aparece();
+			if(this.indice > this.mapa.length - 1) {
+				this.indice = 0;
 			}
-			inimigo.velocidade = parseInt(random(10, 30));
 		}
 
 		if(personagem.esta_colidindo(inimigo)) {
