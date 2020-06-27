@@ -2,18 +2,13 @@ class Jogo {
 	constructor() {
 		this.indice = 0;
 
-		this.mapa = [
-			{ inimigo: 0, velocidade: 10 },
-			{ inimigo: 1, velocidade: 30 },
-			{ inimigo: 1, velocidade: 15 },
-			{ inimigo: 2, velocidade: 40 }
-		];
+		this.mapa = fita.mapa;
 	}
 
 
 	setup() {
 		cenario = new Cenario(imagem_cenario, 5);
-		vida = new Vida(3, 3);
+		vida = new Vida(fita.configuracoes.vida_maxima, fita.configuracoes.vida_inicial);
 		pontuacao = new Pontuacao();
 
 		personagem = new Personagem(matriz_personagem, imagem_personagem, 0, 30, 110, 135, 220, 270);
@@ -70,7 +65,7 @@ class Jogo {
 				som_do_jogo.stop();
 				noLoop();
 				image(imagem_gameover, (width - 206) / 2, (height - 39) / 2, 412, 78);
-				// som_gameover.play();
+				som_gameover.play();
 			}
 		}
 	}

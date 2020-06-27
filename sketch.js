@@ -13,7 +13,7 @@ function setup() {
 	};
 
 	frameRate(62);
-	// som_do_jogo.loop();
+	som_do_jogo.loop();
 }
 
 

@@ -10,6 +10,7 @@ let imagem_inimigo_grande;
 let tela_inicial;
 let botao_gerenciador;
 let jogo;
+let fita;
 let cenario;
 let gameover;
 let vida;
